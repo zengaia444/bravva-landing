@@ -34,7 +34,7 @@
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="place-name" style="font-size: 14px; font-weight: 700">Name of the place</label>
-<input id="place-name" type="text" placeholder="e.g. a café, guesthouse, co-work or service" style="box-sizing: border-box; width: 100%; height: 48px; border-radius: 14px; border: 1px solid #7A3A6C; background: #4A1640; padding: 0 14px; font-size: 16px; color: #F6EEE2">
+<input id="place-name" type="text" placeholder="e.g. a café, guesthouse, co-working space or salon" style="box-sizing: border-box; width: 100%; height: 48px; border-radius: 14px; border: 1px solid #7A3A6C; background: #4A1640; padding: 0 14px; font-size: 16px; color: #F6EEE2">
 </div>
 <button type="button" onClick="{{ addPhoto }}" style="cursor: pointer; height: 64px; border-radius: 18px; border: 2px dashed #7A3A6C; background: {{ photoBg }}; color: #F0C9D3; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 700"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg>{{ photoLabel }}</button>
 <div style="font-size: 12px; line-height: 1.4; color: #E3CDD3; margin-top: -6px">We strip hidden location data from every photo. Please keep other people's faces out of frame.</div>
@@ -75,7 +75,7 @@ constructor(props) { super(props); let c = 'Lisbon'; try { c = new URLSearchPara
 renderVals() {
 const s = this.state;
 const on = (x) => ({ bg: x ? '#B0246E' : '#561E4A', fg: '#F6EEE2', pressed: x ? 'true' : 'false' });
-const types = [['stay','Stay'],['cafe','Café'],['cowork','Co-work'],['exp','Experience'],['service','Service']].map(([id,label]) => Object.assign({ label, pick: () => this.setState({ type: id, anon: id === 'stay' ? true : s.anon }) }, on(s.type === id)));
+const types = [['stay','Stay'],['cafe','Café'],['exp','Experience'],['service','Service']].map(([id,label]) => Object.assign({ label, pick: () => this.setState({ type: id, anon: id === 'stay' ? true : s.anon }) }, on(s.type === id)));
 const tags = [['wifi','Fast wifi'],['solo','Solo-friendly'],['lit','Well-lit street'],['women','Women-run'],['late','Open late'],['cctv','CCTV'],['guard','24/7 Security Guard'],['outlets','Charging outlets']].map(([id,label]) => Object.assign({ label, pick: () => { const t = Object.assign({}, s.tags); t[id] = !t[id]; this.setState({ tags: t }); } }, on(!!s.tags[id])));
 return {
 types, tags,

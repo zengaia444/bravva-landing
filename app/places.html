@@ -86,7 +86,7 @@ const highlight = this.props.highlight ?? '#F0C9D3';
 const s = this.state;
 const all = [
 { type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', verified: true, perk: '[10% off your stay]', tags: ['Women-run', 'CCTV', '24/7 Security Guard'] },
-{ type: 'cowork', name: '[Co-work name]', meta: 'Co-work · Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Charging outlets', 'CCTV'] },
+{ type: 'service', name: '[Co-work name]', meta: 'Service · Co-working, Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Charging outlets', 'CCTV'] },
 { type: 'cafe', name: '[Rooftop café name]', meta: 'Café · Graça', vets: 14, tags: ['Sunset views', 'Solo-friendly'] },
 { type: 'exp', name: '[Sunset sail]', meta: 'Experience · Belém', vets: 11, tags: ['Small group', 'Women guides'] },
 { type: 'cafe', name: '[Café name]', meta: 'Café · Príncipe Real', vets: 9, tags: ['Fast wifi', 'Open late'] },
@@ -94,7 +94,7 @@ const all = [
 { type: 'service', name: '[Women-run nail studio]', meta: 'Service · Chiado', vets: 8, tags: ['Women-run', 'CCTV'] },
 { type: 'service', name: '[Laundry pick-up]', meta: 'Service · Arroios', vets: 5, tags: ['Solo-friendly', 'Open late'] }
 ];
-const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['cowork','Co-work'],['exp','Experiences'],['service','Services']];
+const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['exp','Experiences'],['service','Services']];
 const filters = fl.map(([id, label]) => ({ label, pressed: s.filter === id ? 'true' : 'false', bg: s.filter === id ? accent : '#561E4A', fg: '#F6EEE2', pick: () => this.setState({ filter: id }) }));
 const places = all
 .filter((p) => s.filter === 'all' || p.type === s.filter)
