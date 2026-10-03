@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nearby BRAVVA women · BRAVVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#2A0B22}a{color:#F6EEE2}a:hover{color:#FFFFFF}button{font-family:inherit}*{-webkit-tap-highlight-color:transparent}.phone{display:flex;justify-content:center;padding:24px 0}@media (max-width:430px){.phone{padding:0}.phone>div{width:100vw!important;height:100dvh!important;min-height:844px}}</style>
+</head>
+<body>
+<div class="phone" id="dc-root"></div>
+<template id="dc-template">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #3B1030; color: #F6EEE2; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="flex-grow: 1; box-sizing: border-box; padding: 56px 24px 16px; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Nearby · Lisbon</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 32px; line-height: 1.06; letter-spacing: -0.02em">12 BRAVVA women here this week.</h1>
+</div>
+
+<div style="background: #4A1640; border: 1px solid #6A2A5C; border-radius: 18px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 15px; font-weight: 700">Show me on Nearby</div>
+<div style="font-size: 13px; color: #E3CDD3">City only, never your exact spot</div>
+</div>
+<button type="button" role="switch" aria-checked="{{ visibleAria }}" aria-label="Show me on Nearby" onClick="{{ toggleVisible }}" style="border: 0; cursor: pointer; flex-shrink: 0; width: 56px; height: 32px; border-radius: 999px; padding: 4px; display: flex; justify-content: {{ knobSide }}; background: {{ switchBg }}">
+<span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; display: block"></span>
+</button>
+</div>
+
+<div style="background: #561E4A; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: {{highlight}}">Meetup · Sun 10 am</div>
+<div style="font-size: 13px; color: #E3CDD3">{{ goingCount }} going</div>
+</div>
+<div style="display: flex; align-items: center; gap: 14px">
+<div role="img" aria-label="Photo placeholder: women co-working in a sunny café" style="width: 72px; height: 72px; flex-shrink: 0; border-radius: 16px; background: #6A2A5C; display: flex; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></div>
+<div style="font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 19px; line-height: 1.2">Co-work morning in Príncipe Real</div>
+</div>
+<button type="button" onClick="{{ toggleJoin }}" aria-pressed="{{ joinedAria }}" style="align-self: flex-start; border: 0; cursor: pointer; height: 44px; padding: 0 20px; border-radius: 999px; font-weight: 700; font-size: 15px; background: {{ joinBg }}; color: {{ joinFg }}">{{ joinLabel }}</button>
+</div>
+
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3; margin-top: 4px">Say hi</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{ members }}" as="m" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; background: #4A1640; border-radius: 18px; padding: 10px 12px">
+<div style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; background: {{ m.color }}; color: #3B1030; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center">{{ m.initial }}</div>
+<div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0">
+<div style="font-size: 15px; font-weight: 700">{{ m.name }}</div>
+<div style="font-size: 13px; color: #E3CDD3">{{ m.meta }}</div>
+</div>
+<button type="button" onClick="{{ m.wave }}" aria-label="{{ m.ariaLabel }}" style="border: 0; cursor: pointer; flex-shrink: 0; height: 44px; padding: 0 16px; border-radius: 999px; font-weight: 700; font-size: 14px; background: {{ m.btnBg }}; color: {{ m.btnFg }}">{{ m.btnLabel }}</button>
+</div>
+</sc-for>
+</div>
+
+</div>
+
+<nav aria-label="Main" style="height: 84px; box-sizing: border-box; background: #4A1640; border-top: 1px solid #6A2A5C; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px">
+<a href="home.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</a>
+<a href="nearby.html" aria-current="page" style="text-decoration: none; color: {{highlight}}; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{highlight}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.2c.6-.2 1.3-.3 2-.3 2.2 0 4 1.8 4 4"/></svg>Nearby</a>
+<a href="places.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>Places</a>
+<a href="trips.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13L21 3"/></svg>Trips</a>
+</nav>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { visible: true, joined: false, waved: {} };
+}
+renderVals() {
+const accent = this.props.accent ?? '#B0246E';
+const s = this.state;
+const people = [
+{ id: 'maya', name: 'Maya', meta: 'Content designer · here till 2 Nov', color: '#F0C9D3' },
+{ id: 'joana', name: 'Joana', meta: 'Lisbon local · hosts Sunday walks', color: '#F0C9D3' },
+{ id: 'priya', name: 'Priya', meta: 'Developer · arrived yesterday', color: '#E6D8C5' }
+];
+const members = people.map((p) => {
+const w = !!s.waved[p.id];
+return {
+name: p.name,
+meta: p.meta,
+color: p.color,
+initial: p.name.charAt(0),
+ariaLabel: w ? 'Hi sent to ' + p.name : 'Say hi to ' + p.name,
+btnLabel: w ? 'Hi sent' : 'Say hi',
+btnBg: w ? '#6A2A5C' : accent,
+btnFg: w ? '#E3CDD3' : '#F6EEE2',
+wave: () => this.setState({ waved: Object.assign({}, s.waved, { [p.id]: !w }) })
+};
+});
+return {
+accent,
+highlight: this.props.highlight ?? '#F0C9D3',
+members,
+visibleAria: s.visible ? 'true' : 'false',
+switchBg: s.visible ? '#F0C9D3' : '#7A3A6C',
+knobSide: s.visible ? 'flex-end' : 'flex-start',
+toggleVisible: () => this.setState({ visible: !s.visible }),
+goingCount: s.joined ? 7 : 6,
+joinedAria: s.joined ? 'true' : 'false',
+joinLabel: s.joined ? "You're going" : 'Join',
+joinBg: s.joined ? '#6A2A5C' : accent,
+joinFg: s.joined ? '#F6EEE2' : '#F6EEE2',
+toggleJoin: () => this.setState({ joined: !s.joined })
+};
+}
+}
+
+dcMount(Component);
+</script>
+</body>
+</html>

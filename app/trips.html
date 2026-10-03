@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landed safe · BRAVVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#2A0B22}a{color:#F6EEE2}a:hover{color:#FFFFFF}button{font-family:inherit}*{-webkit-tap-highlight-color:transparent}.phone{display:flex;justify-content:center;padding:24px 0}@media (max-width:430px){.phone{padding:0}.phone>div{width:100vw!important;height:100dvh!important;min-height:844px}}</style>
+</head>
+<body>
+<div class="phone" id="dc-root"></div>
+<template id="dc-template">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #3B1030; color: #F6EEE2; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+<div style="flex-grow: 1; box-sizing: border-box; padding: 56px 24px 16px; display: flex; flex-direction: column; gap: 18px; overflow: hidden">
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Trips</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 34px; line-height: 1.06; letter-spacing: -0.02em">Land, tap, breathe.</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #E3CDD3">Your circle sees your trip. One tap when you arrive and she knows you made it.</p>
+</div>
+
+<div style="background: #561E4A; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #F0C9D3">Today</div>
+<div style="font-size: 13px; color: #E3CDD3">Arrives 9:40 am</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column">
+<div style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 30px">MNL</div>
+<div style="font-size: 13px; color: #E3CDD3">Manila</div>
+</div>
+<svg width="80" height="24" viewBox="0 0 80 24" fill="none" aria-hidden="true"><path d="M4 12h60" stroke="#9A5A88" stroke-width="2" stroke-dasharray="4 6"/><path d="M76 12l-10-6v12z" fill="{{highlight}}"/></svg>
+<div style="display: flex; flex-direction: column; align-items: flex-end">
+<div style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 30px">LIS</div>
+<div style="font-size: 13px; color: #E3CDD3">Lisbon</div>
+</div>
+</div>
+<div style="border-top: 1px solid #6A2A5C; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 15px; font-weight: 700">Share trip with Ana</div>
+<div style="font-size: 13px; color: #E3CDD3">Flight and first-night stay</div>
+</div>
+<button type="button" role="switch" aria-checked="{{ sharedAria }}" aria-label="Share trip with Ana" onClick="{{ toggleShare }}" style="border: 0; cursor: pointer; width: 56px; height: 32px; border-radius: 999px; padding: 4px; display: flex; justify-content: {{ knobSide }}; background: {{ switchBg }}">
+<span style="width: 24px; height: 24px; border-radius: 50%; background: #FFFFFF; display: block"></span>
+</button>
+</div>
+</div>
+
+<sc-if value="{{ notLanded }}" hint-placeholder-val="{{ true }}">
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px">
+<button type="button" onClick="{{ land }}" style="border: 0; cursor: pointer; width: 200px; height: 200px; border-radius: 50%; background: {{accent}}; color: #F6EEE2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 0 14px #561E4A">
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#F6EEE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 22px">I've landed safe</span>
+</button>
+<div style="font-size: 13px; line-height: 1.5; color: #E3CDD3; text-align: center; max-width: 290px; margin-top: 10px">No tap within 3 hours of arrival? Ana gets a gentle nudge.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ landed }}" hint-placeholder-val="{{ false }}">
+<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
+<div style="width: 140px; height: 140px; border-radius: 50%; background: #561E4A; border: 3px solid #F0C9D3; display: flex; align-items: center; justify-content: center">
+<svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</div>
+<div style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 26px">Ana knows you made it.</div>
+<div style="font-size: 15px; color: #E3CDD3">Welcome to Lisbon. 12 BRAVVA women are here this week.</div>
+<a href="nearby.html" style="text-decoration: none; background: {{accent}}; color: #F6EEE2; font-weight: 700; font-size: 15px; height: 44px; padding: 0 20px; border-radius: 999px; display: flex; align-items: center">Meet them</a>
+</div>
+</sc-if>
+
+</div>
+
+<nav aria-label="Main" style="height: 84px; box-sizing: border-box; background: #4A1640; border-top: 1px solid #6A2A5C; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px">
+<a href="home.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</a>
+<a href="nearby.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.2c.6-.2 1.3-.3 2-.3 2.2 0 4 1.8 4 4"/></svg>Nearby</a>
+<a href="places.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>Places</a>
+<a href="trips.html" aria-current="page" style="text-decoration: none; color: {{highlight}}; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{highlight}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13L21 3"/></svg>Trips</a>
+</nav>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { shared: true, landed: false };
+}
+renderVals() {
+const accent = this.props.accent ?? '#B0246E';
+const s = this.state;
+return {
+accent,
+highlight: this.props.highlight ?? '#F0C9D3',
+sharedAria: s.shared ? 'true' : 'false',
+switchBg: s.shared ? '#F0C9D3' : '#7A3A6C',
+knobSide: s.shared ? 'flex-end' : 'flex-start',
+toggleShare: () => this.setState({ shared: !s.shared }),
+notLanded: !s.landed,
+landed: s.landed,
+land: () => this.setState({ landed: true })
+};
+}
+}
+
+dcMount(Component);
+</script>
+</body>
+</html>
