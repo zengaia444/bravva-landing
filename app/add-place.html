@@ -27,7 +27,7 @@
 <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px">
 <sc-for list="{{ cities }}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="flex-shrink: 0; border: 0; cursor: pointer; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; background: {{ c.bg }}; color: {{ c.fg }}">{{ c.label }}</button></sc-for>
 </div>
-<sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}"><div style="font-size: 12px; line-height: 1.4; color: #E3CDD3">A past visit: your pin goes live once 2 members vouch for it. Your +20 Sparkles land then.</div></sc-if>
+<sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}"><div style="font-size: 12px; line-height: 1.4; color: #E3CDD3">A past visit: your pin goes live once 2 members vet it. Your +20 Sparkles land then.</div></sc-if>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{ types }}" as="c" hint-placeholder-count="4"><button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="border: 0; cursor: pointer; min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{ c.bg }}; color: {{ c.fg }}">{{ c.label }}</button></sc-for>
@@ -83,7 +83,7 @@ editing: !s.done, done: s.done,
 cityName: s.city, isPast: s.city !== 'Lisbon',
 cities: (() => { const list = ['Lisbon', 'Bangkok', 'Canggu, Bali', 'Paris', 'Tokyo', 'Rome', 'New York']; if (s.city !== 'Lisbon') { const k = list.indexOf(s.city); if (k > -1) list.splice(k, 1); list.splice(1, 0, s.city); } return list.map((n) => Object.assign({ label: n === 'Lisbon' ? 'Lisbon · here now' : n, pick: () => this.setState({ city: n }) }, on(s.city === n))); })(),
 sparkleLabel: s.city !== 'Lisbon' ? '+20 Sparkles pending' : '+20 Sparkles',
-doneCopy: s.city !== 'Lisbon' ? 'Thanks for vetting ' + s.city + '. Past-visit pins go live once 2 members vouch for them, and that\'s when your +20 Sparkles land. It shows as New until 3 members vouch.' : 'Your pin goes live in a few hours, so it never shows where you are right now. It shows as New until 3 members vouch for it.',
+doneCopy: s.city !== 'Lisbon' ? 'Thanks for vetting ' + s.city + '. Past-visit pins go live once 2 members vet them, and that\'s when your +20 Sparkles land. It shows as New until 3 members vet it.' : 'Your pin goes live in a few hours, so it never shows where you are right now. It shows as New until 3 members vet it.',
 photoBg: s.photo ? '#561E4A' : 'transparent',
 photoLabel: s.photo ? 'Vibe photo added' : 'Add a vibe photo',
 addPhoto: () => this.setState({ photo: !s.photo }),

@@ -19,38 +19,41 @@
 <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Vetted places · Lisbon</div>
 <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 32px; line-height: 1.06; letter-spacing: -0.02em">Where BRAVVA women <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">feel at home.</span></h1>
 <a href="add-place.html" style="align-self: flex-start; text-decoration: none; display: flex; align-items: center; gap: 8px; border: 2px solid #F0C9D3; color: #F0C9D3; font-weight: 700; font-size: 15px; height: 44px; padding: 0 18px; border-radius: 999px"><span aria-hidden="true" style="font-size: 20px; line-height: 1">+</span> Add a place</a>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #E3CDD3"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #E5B544"></span>Gold = BRAVVA Verified partners with exclusive perks. Everything else is vetted by members.</div>
 </div>
 
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
 <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-<button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="border: 0; cursor: pointer; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: 15px; font-weight: 700; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.label }}</button>
+<button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="border: 0; cursor: pointer; min-height: 40px; padding: 0 13px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.label }}</button>
 </sc-for>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{ places }}" as="p" hint-placeholder-count="3">
-<a href="place.html" style="text-decoration: none; color: #F6EEE2; background: #561E4A; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
-<div style="display: flex; align-items: center; gap: 12px">
-<div role="img" aria-label="{{ p.photo }}" style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 14px; background: #6A2A5C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></div>
-<div style="display: flex; flex-direction: column; gap: 2px">
-<div style="font-size: 17px; font-weight: 700">{{ p.name }}</div>
+<a href="place.html" style="text-decoration: none; color: #F6EEE2; background: #561E4A; border: 2px solid {{ p.border }}; border-radius: 22px; padding: 12px 14px; display: flex; flex-direction: column; gap: 9px">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 10px">
+<div style="display: flex; align-items: center; gap: 12px; min-width: 0">
+<div role="img" aria-label="{{ p.photo }}" style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 14px; background: #6A2A5C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<div style="font-size: 16px; font-weight: 700">{{ p.name }}</div>
 <div style="font-size: 13px; color: #E3CDD3">{{ p.meta }}</div>
 </div>
 </div>
-<sc-if value="{{ p.perk }}" hint-placeholder-val="{{ false }}">
-<div style="flex-shrink: 0; background: {{accent}}; color: #F6EEE2; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px">Member perk</div>
+<sc-if value="{{ p.verified }}" hint-placeholder-val="{{ false }}">
+<div style="flex-shrink: 0; display: flex; align-items: center; gap: 4px; background: #E5B544; color: #3B1030; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px"><svg width="12" height="12" viewBox="0 0 24 24" fill="#3B1030" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/></svg>BRAVVA Verified</div>
+</sc-if>
+<sc-if value="{{ p.member }}" hint-placeholder-val="{{ true }}">
+<div aria-label="{{ p.vetsAria }}" style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; background: #6A2A5C; border-radius: 12px; padding: 4px 9px"><div style="display: flex; align-items: center; gap: 3px; font-size: 15px; font-weight: 800; color: #F0C9D3"><svg width="13" height="13" viewBox="0 0 24 24" fill="#F0C9D3" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>{{ p.vets }}</div><div style="font-size: 10px; color: #E3CDD3">vets</div></div>
 </sc-if>
 </div>
 <div style="display: flex; gap: 6px; flex-wrap: wrap">
 <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="2">
-<div style="background: #6A2A5C; color: #F6EEE2; font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: 999px">{{ t.label }}</div>
+<div style="background: #6A2A5C; color: #F6EEE2; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px">{{ t.label }}</div>
 </sc-for>
 </div>
-<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #F0C9D3">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
-{{ p.recs }}
-</div>
+<sc-if value="{{ p.verified }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: #E5B544"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E5B544" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M12 8c-1.5-3-5-3.5-5-1s3 1 5 1c2 0 5 1.5 5-1s-3.5-2-5 1z"/></svg>BRAVVA perk: {{ p.perk }}</div>
+</sc-if>
 </a>
 </sc-for>
 </div>
@@ -79,34 +82,32 @@ this.state = { filter: 'all' };
 }
 renderVals() {
 const accent = this.props.accent ?? '#B0246E';
+const highlight = this.props.highlight ?? '#F0C9D3';
 const s = this.state;
 const all = [
-{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', perk: true, recs: 'Recommended by 14 members', tags: ['Women-run', '24h reception', 'Well-lit street'] },
-{ type: 'cafe', name: '[Café name]', meta: 'Café · Príncipe Real', perk: false, recs: 'Recommended by 9 members', tags: ['Fast wifi', 'Solo-friendly', 'Open late'] },
-{ type: 'cowork', name: '[Co-work name]', meta: 'Co-work · Cais do Sodré', perk: true, recs: 'Recommended by 11 members', tags: ['Day pass', 'Women’s events', 'Near metro'] },
-{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Bairro Alto', perk: false, recs: 'Recommended by 6 members', tags: ['Female dorms', 'Lockers'] }
+{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', verified: true, perk: '[10% off your stay]', tags: ['Women-run', '24h reception', 'Well-lit street'] },
+{ type: 'cowork', name: '[Co-work name]', meta: 'Co-work · Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Women’s events'] },
+{ type: 'cafe', name: '[Rooftop café name]', meta: 'Café · Graça', vets: 14, tags: ['Sunset views', 'Solo-friendly'] },
+{ type: 'exp', name: '[Sunset sail]', meta: 'Experience · Belém', vets: 11, tags: ['Small group', 'Women guides'] },
+{ type: 'cafe', name: '[Café name]', meta: 'Café · Príncipe Real', vets: 9, tags: ['Fast wifi', 'Open late'] },
+{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Bairro Alto', vets: 6, tags: ['Female dorms', 'Lockers'] }
 ];
-const fl = [
-{ id: 'all', label: 'All' },
-{ id: 'stay', label: 'Stays' },
-{ id: 'cafe', label: 'Cafés' },
-{ id: 'cowork', label: 'Co-work' }
-];
-const filters = fl.map((f) => ({
-label: f.label,
-pressed: s.filter === f.id ? 'true' : 'false',
-bg: s.filter === f.id ? accent : '#561E4A',
-fg: s.filter === f.id ? '#F6EEE2' : '#F6EEE2',
-pick: () => this.setState({ filter: f.id })
-}));
+const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['cowork','Co-work'],['exp','Experiences']];
+const filters = fl.map(([id, label]) => ({ label, pressed: s.filter === id ? 'true' : 'false', bg: s.filter === id ? accent : '#561E4A', fg: '#F6EEE2', pick: () => this.setState({ filter: id }) }));
 const places = all
 .filter((p) => s.filter === 'all' || p.type === s.filter)
+.sort((a, b) => (b.verified ? 1 : 0) - (a.verified ? 1 : 0) || (b.vets || 0) - (a.vets || 0))
 .slice(0, 3)
-.map((p) => Object.assign({}, p, { photo: 'Photo placeholder: ' + p.meta, tags: p.tags.map((t) => ({ label: t })) }));
-return { accent, highlight: this.props.highlight ?? '#F0C9D3', filters, places };
+.map((p) => Object.assign({}, p, {
+verified: !!p.verified, member: !p.verified,
+border: p.verified ? '#E5B544' : 'transparent',
+vetsAria: (p.vets || 0) + ' member vets',
+photo: 'Photo placeholder: ' + p.meta,
+tags: p.tags.map((t) => ({ label: t }))
+}));
+return { accent, highlight, filters, places };
 }
 }
-
 dcMount(Component);
 </script>
 </body>
