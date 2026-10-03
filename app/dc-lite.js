@@ -48,6 +48,7 @@
     const root = document.getElementById('dc-root');
     const comp = new Component({});
     window.__dcRender = function () {
+      const ae = document.activeElement, activeId = ae && ae.id, selS = ae && ae.selectionStart, selE = ae && ae.selectionEnd;
       const keep = {};
       root.querySelectorAll('input[id]').forEach((i) => { keep[i.id] = i.value; });
       const frag = document.createDocumentFragment();
@@ -55,6 +56,7 @@
       tpl.content.childNodes.forEach((c) => build(c, [vals], frag));
       root.replaceChildren(frag);
       Object.keys(keep).forEach((id) => { const i = document.getElementById(id); if (i) i.value = keep[id]; });
+      if (activeId) { const el = document.getElementById(activeId); if (el && el.focus) { el.focus(); try { el.setSelectionRange(selS, selE); } catch (e) {} } }
     };
     window.__dcRender();
   };

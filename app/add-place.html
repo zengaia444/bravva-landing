@@ -13,15 +13,22 @@
 <div class="phone" id="dc-root"></div>
 <template id="dc-template">
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #3B1030; color: #F6EEE2; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column">
-<div style="flex-grow: 1; box-sizing: border-box; padding: 52px 24px 20px; display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+<div style="flex-grow: 1; box-sizing: border-box; padding: 52px 24px 16px; display: flex; flex-direction: column; gap: 11px; overflow: hidden">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <a href="places.html" aria-label="Back to places" style="text-decoration: none; width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6EEE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Add a place · Lisbon</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Add a place · {{ cityName }}</div>
 <div style="width: 44px"></div>
 </div>
 <sc-if value="{{ editing }}" hint-placeholder-val="{{ true }}">
-<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 28px; line-height: 1.1">Where do you feel <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">at home?</span></h1>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 24px; line-height: 1.1">Where do you feel <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">at home?</span></h1>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 14px; font-weight: 700">Which city?</div>
+<div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px">
+<sc-for list="{{ cities }}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="flex-shrink: 0; border: 0; cursor: pointer; min-height: 36px; padding: 0 12px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; background: {{ c.bg }}; color: {{ c.fg }}">{{ c.label }}</button></sc-for>
+</div>
+<sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}"><div style="font-size: 12px; line-height: 1.4; color: #E3CDD3">A past visit: your pin goes live once 2 members vouch for it. Your +20 Sparkles land then.</div></sc-if>
+</div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{ types }}" as="c" hint-placeholder-count="4"><button type="button" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" style="border: 0; cursor: pointer; min-height: 40px; padding: 0 14px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{ c.bg }}; color: {{ c.fg }}">{{ c.label }}</button></sc-for>
 </div>
@@ -29,7 +36,7 @@
 <label for="place-name" style="font-size: 14px; font-weight: 700">Name of the place</label>
 <input id="place-name" type="text" placeholder="e.g. a café, guesthouse or co-work" style="box-sizing: border-box; width: 100%; height: 48px; border-radius: 14px; border: 1px solid #7A3A6C; background: #4A1640; padding: 0 14px; font-size: 16px; color: #F6EEE2">
 </div>
-<button type="button" onClick="{{ addPhoto }}" style="cursor: pointer; height: 96px; border-radius: 18px; border: 2px dashed #7A3A6C; background: {{ photoBg }}; color: #F0C9D3; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 700"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg>{{ photoLabel }}</button>
+<button type="button" onClick="{{ addPhoto }}" style="cursor: pointer; height: 64px; border-radius: 18px; border: 2px dashed #7A3A6C; background: {{ photoBg }}; color: #F0C9D3; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 700"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg>{{ photoLabel }}</button>
 <div style="font-size: 12px; line-height: 1.4; color: #E3CDD3; margin-top: -6px">We strip hidden location data from every photo. Please keep other people's faces out of frame.</div>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <div style="font-size: 14px; font-weight: 700">The vibe</div>
@@ -47,8 +54,8 @@
 <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
 <div style="width: 120px; height: 120px; border-radius: 50%; background: #561E4A; border: 3px solid #F0C9D3; display: flex; align-items: center; justify-content: center"><svg width="52" height="52" viewBox="0 0 24 24" fill="#F0C9D3" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/><path d="M18.5 14.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg></div>
 <div style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 28px">Pinned. Thank you.</div>
-<div style="font-size: 15px; line-height: 1.5; color: #E3CDD3; max-width: 300px">Your pin goes live in a few hours, so it never shows where you are right now. It's marked <b style="color: #F6EEE2">New</b> until 3 members vouch for it.</div>
-<div style="display: flex; align-items: center; gap: 6px; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 15px; padding: 8px 16px; border-radius: 999px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F6EEE2" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/><path d="M18.5 14.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg>+15 Sparkles</div>
+<div style="font-size: 15px; line-height: 1.5; color: #E3CDD3; max-width: 300px">{{ doneCopy }}</div>
+<div style="display: flex; align-items: center; gap: 6px; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 15px; padding: 8px 16px; border-radius: 999px"><svg width="16" height="16" viewBox="0 0 24 24" fill="#F6EEE2" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/><path d="M18.5 14.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg>{{ sparkleLabel }}</div>
 <a href="places.html" style="margin-top: 8px; text-decoration: underline; font-size: 16px">Back to places</a>
 </div>
 </sc-if>
@@ -64,7 +71,7 @@
 <script src="dc-lite.js"></script>
 <script>
 class Component extends DCLogic {
-constructor(props) { super(props); this.state = { type: 'cafe', tags: { wifi: true }, anon: false, photo: false, done: false }; }
+constructor(props) { super(props); let c = 'Lisbon'; try { c = new URLSearchParams(location.search).get('city') || 'Lisbon'; } catch (e) {} this.state = { type: 'cafe', tags: { wifi: true }, anon: false, photo: false, done: false, city: c }; }
 renderVals() {
 const s = this.state;
 const on = (x) => ({ bg: x ? '#B0246E' : '#561E4A', fg: '#F6EEE2', pressed: x ? 'true' : 'false' });
@@ -73,6 +80,10 @@ const tags = [['wifi','Fast wifi'],['solo','Solo-friendly'],['lit','Well-lit str
 return {
 types, tags,
 editing: !s.done, done: s.done,
+cityName: s.city, isPast: s.city !== 'Lisbon',
+cities: (() => { const list = ['Lisbon', 'Bangkok', 'Canggu, Bali', 'Paris', 'Tokyo', 'Rome', 'New York']; if (s.city !== 'Lisbon') { const k = list.indexOf(s.city); if (k > -1) list.splice(k, 1); list.splice(1, 0, s.city); } return list.map((n) => Object.assign({ label: n === 'Lisbon' ? 'Lisbon · here now' : n, pick: () => this.setState({ city: n }) }, on(s.city === n))); })(),
+sparkleLabel: s.city !== 'Lisbon' ? '+20 Sparkles pending' : '+20 Sparkles',
+doneCopy: s.city !== 'Lisbon' ? 'Thanks for vetting ' + s.city + '. Past-visit pins go live once 2 members vouch for them, and that\'s when your +20 Sparkles land. It shows as New until 3 members vouch.' : 'Your pin goes live in a few hours, so it never shows where you are right now. It shows as New until 3 members vouch for it.',
 photoBg: s.photo ? '#561E4A' : 'transparent',
 photoLabel: s.photo ? 'Vibe photo added' : 'Add a vibe photo',
 addPhoto: () => this.setState({ photo: !s.photo }),
