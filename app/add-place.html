@@ -13,7 +13,7 @@
 <div class="phone" id="dc-root"></div>
 <template id="dc-template">
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #3B1030; color: #F6EEE2; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column">
-<div style="flex-grow: 1; box-sizing: border-box; padding: 52px 24px 16px; display: flex; flex-direction: column; gap: 11px; overflow: hidden">
+<div style="flex-grow: 1; box-sizing: border-box; padding: 52px 24px 16px; display: flex; flex-direction: column; gap: 11px; overflow-y: auto; min-height: 0">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <a href="places.html" aria-label="Back to places" style="text-decoration: none; width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6EEE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
@@ -34,7 +34,7 @@
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px">
 <label for="place-name" style="font-size: 14px; font-weight: 700">Name of the place</label>
-<input id="place-name" type="text" placeholder="e.g. a café, guesthouse or co-work" style="box-sizing: border-box; width: 100%; height: 48px; border-radius: 14px; border: 1px solid #7A3A6C; background: #4A1640; padding: 0 14px; font-size: 16px; color: #F6EEE2">
+<input id="place-name" type="text" placeholder="e.g. a café, guesthouse, co-work or service" style="box-sizing: border-box; width: 100%; height: 48px; border-radius: 14px; border: 1px solid #7A3A6C; background: #4A1640; padding: 0 14px; font-size: 16px; color: #F6EEE2">
 </div>
 <button type="button" onClick="{{ addPhoto }}" style="cursor: pointer; height: 64px; border-radius: 18px; border: 2px dashed #7A3A6C; background: {{ photoBg }}; color: #F0C9D3; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: 700"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="M3 17l5-5 4 4 3-3 6 6"/></svg>{{ photoLabel }}</button>
 <div style="font-size: 12px; line-height: 1.4; color: #E3CDD3; margin-top: -6px">We strip hidden location data from every photo. Please keep other people's faces out of frame.</div>
@@ -48,7 +48,7 @@
 <div style="display: flex; flex-direction: column; gap: 2px"><div style="font-size: 14px; font-weight: 700">Post anonymously</div><div style="font-size: 12px; color: #E3CDD3">Shows "a BRAVVA member" instead of your name</div></div>
 <button type="button" role="switch" aria-checked="{{ anonAria }}" aria-label="Post anonymously" onClick="{{ toggleAnon }}" style="border: 0; cursor: pointer; flex-shrink: 0; width: 52px; height: 30px; border-radius: 999px; padding: 4px; display: flex; justify-content: {{ knob }}; background: {{ switchBg }}"><span style="width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; display: block"></span></button>
 </div>
-<button type="button" onClick="{{ submit }}" style="margin-top: auto; border: 0; cursor: pointer; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 17px; height: 54px; flex-shrink: 0; border-radius: 999px">Pin it</button>
+<button type="button" onClick="{{ submit }}" style="margin-top: auto; border: 0; cursor: pointer; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 17px; height: 54px; min-height: 54px; flex-shrink: 0; border-radius: 999px">Pin it</button>
 </sc-if>
 <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
 <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center">
@@ -75,13 +75,13 @@ constructor(props) { super(props); let c = 'Lisbon'; try { c = new URLSearchPara
 renderVals() {
 const s = this.state;
 const on = (x) => ({ bg: x ? '#B0246E' : '#561E4A', fg: '#F6EEE2', pressed: x ? 'true' : 'false' });
-const types = [['stay','Stay'],['cafe','Café'],['cowork','Co-work'],['exp','Experience']].map(([id,label]) => Object.assign({ label, pick: () => this.setState({ type: id, anon: id === 'stay' ? true : s.anon }) }, on(s.type === id)));
-const tags = [['wifi','Fast wifi'],['solo','Solo-friendly'],['lit','Well-lit street'],['women','Women-run'],['late','Open late']].map(([id,label]) => Object.assign({ label, pick: () => { const t = Object.assign({}, s.tags); t[id] = !t[id]; this.setState({ tags: t }); } }, on(!!s.tags[id])));
+const types = [['stay','Stay'],['cafe','Café'],['cowork','Co-work'],['exp','Experience'],['service','Service']].map(([id,label]) => Object.assign({ label, pick: () => this.setState({ type: id, anon: id === 'stay' ? true : s.anon }) }, on(s.type === id)));
+const tags = [['wifi','Fast wifi'],['solo','Solo-friendly'],['lit','Well-lit street'],['women','Women-run'],['late','Open late'],['cctv','CCTV'],['guard','24/7 Security Guard'],['outlets','Charging outlets']].map(([id,label]) => Object.assign({ label, pick: () => { const t = Object.assign({}, s.tags); t[id] = !t[id]; this.setState({ tags: t }); } }, on(!!s.tags[id])));
 return {
 types, tags,
 editing: !s.done, done: s.done,
 cityName: s.city, isPast: s.city !== 'Lisbon',
-cities: (() => { const list = ['Lisbon', 'Bangkok', 'Canggu, Bali', 'Paris', 'Tokyo', 'Rome', 'New York']; if (s.city !== 'Lisbon') { const k = list.indexOf(s.city); if (k > -1) list.splice(k, 1); list.splice(1, 0, s.city); } return list.map((n) => Object.assign({ label: n === 'Lisbon' ? 'Lisbon · here now' : n, pick: () => this.setState({ city: n }) }, on(s.city === n))); })(),
+cities: (() => { const list = ['Lisbon', 'Makati', 'Taguig', 'Quezon City', 'Da Nang', 'Bangkok', 'Canggu, Bali', 'Paris', 'Tokyo', 'Rome', 'New York']; if (s.city !== 'Lisbon') { const k = list.indexOf(s.city); if (k > -1) list.splice(k, 1); list.splice(1, 0, s.city); } return list.map((n) => Object.assign({ label: n === 'Lisbon' ? 'Lisbon · here now' : n, pick: () => this.setState({ city: n }) }, on(s.city === n))); })(),
 sparkleLabel: s.city !== 'Lisbon' ? '+20 Sparkles pending' : '+20 Sparkles',
 doneCopy: s.city !== 'Lisbon' ? 'Thanks for vetting ' + s.city + '. Past-visit pins go live once 2 members vet them, and that\'s when your +20 Sparkles land. It shows as New until 3 members vet it.' : 'Your pin goes live in a few hours, so it never shows where you are right now. It shows as New until 3 members vet it.',
 photoBg: s.photo ? '#561E4A' : 'transparent',

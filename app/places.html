@@ -22,9 +22,9 @@
 <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #E3CDD3"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #E5B544"></span>Gold = BRAVVA Verified partners with exclusive perks. Everything else is vetted by members.</div>
 </div>
 
-<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<div style="display: flex; gap: 8px; overflow-x: auto; flex-shrink: 0; padding-bottom: 2px">
 <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-<button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="border: 0; cursor: pointer; min-height: 40px; padding: 0 13px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.label }}</button>
+<button type="button" onClick="{{ f.pick }}" aria-pressed="{{ f.pressed }}" style="border: 0; cursor: pointer; flex-shrink: 0; white-space: nowrap; min-height: 40px; padding: 0 13px; border-radius: 999px; font-size: 14px; font-weight: 700; background: {{ f.bg }}; color: {{ f.fg }}">{{ f.label }}</button>
 </sc-for>
 </div>
 
@@ -48,7 +48,7 @@
 </div>
 <div style="display: flex; gap: 6px; flex-wrap: wrap">
 <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="2">
-<div style="background: #6A2A5C; color: #F6EEE2; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px">{{ t.label }}</div>
+<div style="display: flex; align-items: center; gap: 4px; background: {{ t.bg }}; border: 1px solid {{ t.border }}; color: #F6EEE2; font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 999px"><sc-if value="{{ t.icon }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/></svg></sc-if>{{ t.label }}</div>
 </sc-for>
 </div>
 <sc-if value="{{ p.verified }}" hint-placeholder-val="{{ false }}">
@@ -85,14 +85,16 @@ const accent = this.props.accent ?? '#B0246E';
 const highlight = this.props.highlight ?? '#F0C9D3';
 const s = this.state;
 const all = [
-{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', verified: true, perk: '[10% off your stay]', tags: ['Women-run', '24h reception', 'Well-lit street'] },
-{ type: 'cowork', name: '[Co-work name]', meta: 'Co-work · Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Women’s events'] },
+{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', verified: true, perk: '[10% off your stay]', tags: ['Women-run', 'CCTV', '24/7 Security Guard'] },
+{ type: 'cowork', name: '[Co-work name]', meta: 'Co-work · Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Charging outlets', 'CCTV'] },
 { type: 'cafe', name: '[Rooftop café name]', meta: 'Café · Graça', vets: 14, tags: ['Sunset views', 'Solo-friendly'] },
 { type: 'exp', name: '[Sunset sail]', meta: 'Experience · Belém', vets: 11, tags: ['Small group', 'Women guides'] },
 { type: 'cafe', name: '[Café name]', meta: 'Café · Príncipe Real', vets: 9, tags: ['Fast wifi', 'Open late'] },
-{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Bairro Alto', vets: 6, tags: ['Female dorms', 'Lockers'] }
+{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Bairro Alto', vets: 6, tags: ['Female dorms', '24/7 Security Guard'] },
+{ type: 'service', name: '[Women-run nail studio]', meta: 'Service · Chiado', vets: 8, tags: ['Women-run', 'CCTV'] },
+{ type: 'service', name: '[Laundry pick-up]', meta: 'Service · Arroios', vets: 5, tags: ['Solo-friendly', 'Open late'] }
 ];
-const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['cowork','Co-work'],['exp','Experiences']];
+const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['cowork','Co-work'],['exp','Experiences'],['service','Services']];
 const filters = fl.map(([id, label]) => ({ label, pressed: s.filter === id ? 'true' : 'false', bg: s.filter === id ? accent : '#561E4A', fg: '#F6EEE2', pick: () => this.setState({ filter: id }) }));
 const places = all
 .filter((p) => s.filter === 'all' || p.type === s.filter)
@@ -103,7 +105,7 @@ verified: !!p.verified, member: !p.verified,
 border: p.verified ? '#E5B544' : 'transparent',
 vetsAria: (p.vets || 0) + ' member vets',
 photo: 'Photo placeholder: ' + p.meta,
-tags: p.tags.map((t) => ({ label: t }))
+tags: p.tags.map((t) => { const safe = ['CCTV', '24/7 Security Guard', 'Charging outlets', 'Well-lit street'].indexOf(t) > -1; return { label: t, bg: safe ? 'transparent' : '#6A2A5C', border: safe ? '#F0C9D3' : '#6A2A5C', icon: safe }; })
 }));
 return { accent, highlight, filters, places };
 }
