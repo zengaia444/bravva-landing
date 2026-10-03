@@ -1,6 +1,6 @@
-// BRAVVA links: paste your Systeme.io URLs between the quotes, save, and re-upload this file.
-// While a link is empty, its button just scrolls to the pricing section.
+// BRAVVA links. Change a URL here, save, then Commit + Push in GitHub Desktop.
 window.BRAVVA_LINKS = {
-  founding: "",  // Systeme.io order page for the $49/year Founding Member plan
-  trial: ""      // Systeme.io order page for the free 30-day Monthly plan
+  join: "https://join.bravvaclub.com",      // every "Join Now" button
+  founding: "https://join.bravvaclub.com",  // Founding Member card ($49/year). Swap for the exact Systeme.io order page if it differs
+  trial: "https://join.bravvaclub.com"      // Monthly card (free 30 days). Swap for its own Systeme.io order page
 };
