@@ -25,7 +25,7 @@
 <div style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{ friends }}" as="f" hint-placeholder-count="1">
 <div style="display: flex; align-items: center; gap: 12px; background: #561E4A; border-radius: 18px; padding: 10px 14px">
-<div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: {{ f.color }}; color: #3B1030; font-weight: 700; display: flex; align-items: center; justify-content: center">{{ f.initial }}</div>
+<div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: {{ f.bg }}; color: #3B1030; font-weight: 700; display: flex; align-items: center; justify-content: center">{{ f.initial }}</div>
 <div style="display: flex; flex-direction: column; gap: 2px"><div style="font-size: 15px; font-weight: 700">{{ f.name }}</div><div style="font-size: 13px; color: #E3CDD3">{{ f.meta }}</div></div>
 </div>
 </sc-for>
@@ -67,12 +67,12 @@ constructor(props) { super(props); this.state = { plan: 'paid', count: 1, sheet:
 renderVals() {
 const s = this.state;
 const pool = [
-{ name: 'Ana', meta: 'Last check-in 8:12 am · all good', color: '#F0C9D3' },
+{ name: 'Minrie', meta: 'Last check-in 8:12 am · all good', color: '#F0C9D3', photo: 'minrie.jpg' },
 { name: 'Maya', meta: 'Added today', color: '#E6D8C5' },
 { name: 'Joana', meta: 'Added today', color: '#F6EEE2' }
 ];
 const n = s.plan === 'free' ? 1 : s.count;
-const friends = pool.slice(0, n).map((f) => Object.assign({ initial: f.name.charAt(0) }, f));
+const friends = pool.slice(0, n).map((f) => Object.assign({ initial: f.photo ? '' : f.name.charAt(0), bg: f.photo ? 'url(' + f.photo + ') center / cover no-repeat' : f.color }, f));
 const free = s.plan === 'free';
 return {
 friends,
