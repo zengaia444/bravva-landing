@@ -19,3 +19,7 @@ Fonts: Fraunces (headings) + DM Sans (body), from Google Fonts.
 ## Publish free with GitHub Pages
 Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save.
 Live in about a minute at `https://<your-username>.github.io/bravva-landing/`.
+
+## Membership (decided 13 Oct 2026)
+- First 10,000 Founding Members: $49 one-time, lifetime, paid via Systeme.io + PayPal. Full refund on request until Jan 15, 2027.
+- App launches Dec 14, 2026. After 10,000: invite-only (any verified member can invite; paid referrals earn Sparkles), $7.99/month or $59/year via Stripe (recurring billing and cancellations). Refund within 30 days of payment.

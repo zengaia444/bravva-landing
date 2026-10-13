@@ -21,10 +21,7 @@
 <div style="width: 44px"></div>
 </div>
 <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1.08">Your circle <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">has your back.</span></h1>
-<div role="group" aria-label="Prototype view" style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #E3CDD3">Prototype view:
-<button type="button" onClick="{{ setFree }}" aria-pressed="{{ freeAria }}" style="border: 0; cursor: pointer; height: 32px; padding: 0 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: {{ freeBg }}; color: #F6EEE2">Free</button>
-<button type="button" onClick="{{ setPaid }}" aria-pressed="{{ paidAria }}" style="border: 0; cursor: pointer; height: 32px; padding: 0 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: {{ paidBg }}; color: #F6EEE2">Paid</button>
-</div>
+
 <div style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{ friends }}" as="f" hint-placeholder-count="1">
 <div style="display: flex; align-items: center; gap: 12px; background: #561E4A; border-radius: 18px; padding: 10px 14px">
@@ -36,11 +33,11 @@
 <div style="font-size: 13px; color: #E3CDD3">{{ capacity }}</div>
 <button type="button" onClick="{{ addFriend }}" style="cursor: pointer; height: 48px; flex-shrink: 0; border-radius: 999px; border: 2px solid #F0C9D3; background: transparent; color: #F0C9D3; font-weight: 700; font-size: 15px">+ Add a friend to your circle</button>
 <div style="margin-top: auto; background: #4A1640; border: 1px solid #6A2A5C; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#F0C9D3" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/><path d="M18.5 14.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg><div style="font-size: 16px; font-weight: 700">Refer a friend</div></div>
-<div style="font-size: 13px; line-height: 1.45; color: #E3CDD3">You both earn +50 Sparkles when she verifies her email and checks in 3 times, and +150 more each when she becomes a paying member.</div>
+<div style="display: flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 24 24" fill="#F0C9D3" aria-hidden="true"><path d="M11 2.5l2.1 6.1 6.1 2.1-6.1 2.1L11 18.9l-2.1-6.1L2.8 10.7l6.1-2.1z"/><path d="M18.5 14.5l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9z"/></svg><div style="font-size: 16px; font-weight: 700">Invite a friend</div></div>
+<div style="font-size: 13px; line-height: 1.45; color: #E3CDD3">Invite a friend to BRAVVA. When she joins and her first payment clears, you both earn +200 Sparkles.</div>
 <div style="display: flex; gap: 8px; align-items: center">
 <div style="flex-grow: 1; min-width: 0; height: 40px; border-radius: 12px; background: #3B1030; display: flex; align-items: center; padding: 0 12px; font-size: 13px; color: #E3CDD3; overflow: hidden; white-space: nowrap">bravvaclub.com/invite/[your-code]</div>
-<button type="button" onClick="{{ copy }}" style="border: 0; cursor: pointer; height: 40px; padding: 0 14px; border-radius: 12px; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 13px">{{ copyLabel }}</button>
+<button type="button" onClick="{{ copy }}" style="border: 0; cursor: pointer; height: 40px; padding: 0 14px; border-radius: 12px; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 13px; white-space: nowrap">{{ copyLabel }}</button>
 </div>
 </div>
 </div>
@@ -66,7 +63,7 @@
 <script src="dc-lite.js"></script>
 <script>
 class Component extends DCLogic {
-constructor(props) { super(props); this.state = { plan: 'free', count: 1, sheet: false, copied: false }; }
+constructor(props) { super(props); this.state = { plan: 'paid', count: 1, sheet: false, copied: false }; }
 renderVals() {
 const s = this.state;
 const pool = [
@@ -79,7 +76,7 @@ const friends = pool.slice(0, n).map((f) => Object.assign({ initial: f.name.char
 const free = s.plan === 'free';
 return {
 friends,
-capacity: free ? '1 of 1 circle spots used on Free' : 'Paid plan: add as many friends as you like',
+capacity: 'Add as many friends as you like',
 freeAria: free ? 'true' : 'false', paidAria: free ? 'false' : 'true',
 freeBg: free ? '#B0246E' : '#561E4A', paidBg: free ? '#561E4A' : '#B0246E',
 setFree: () => this.setState({ plan: 'free', sheet: false }),
