@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 <style>body{margin:0;background:#2A0B22}a{color:#F6EEE2}a:hover{color:#FFFFFF}button{font-family:inherit}input,textarea{font-family:inherit}*{-webkit-tap-highlight-color:transparent}.phone{display:flex;justify-content:center;padding:24px 0}@media (max-width:430px){.phone{padding:0}.phone>div{width:100vw!important;height:100dvh!important;min-height:844px}}</style>
+<script src="theme.js"></script>
 </head>
 <body>
 <div class="phone" id="dc-root"></div>
@@ -87,7 +88,7 @@ doneCopy: s.city !== 'Lisbon' ? 'Thanks for vetting ' + s.city + '. Past-visit p
 photoBg: s.photo ? '#561E4A' : 'transparent',
 photoLabel: s.photo ? 'Vibe photo added' : 'Add a vibe photo',
 addPhoto: () => this.setState({ photo: !s.photo }),
-anonAria: s.anon ? 'true' : 'false', knob: s.anon ? 'flex-end' : 'flex-start', switchBg: s.anon ? '#F0C9D3' : '#7A3A6C',
+anonAria: s.anon ? 'true' : 'false', knob: s.anon ? 'flex-end' : 'flex-start', switchBg: s.anon ? '#34C759' : '#7A3A6C',
 toggleAnon: () => this.setState({ anon: !s.anon }),
 submit: () => this.setState({ done: true })
 };

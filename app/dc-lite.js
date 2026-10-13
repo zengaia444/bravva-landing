@@ -54,6 +54,7 @@
       const frag = document.createDocumentFragment();
       const vals = comp.renderVals();
       tpl.content.childNodes.forEach((c) => build(c, [vals], frag));
+      if (window.__bravvaTheme) window.__bravvaTheme(frag);
       root.replaceChildren(frag);
       Object.keys(keep).forEach((id) => { const i = document.getElementById(id); if (i) i.value = keep[id]; });
       if (activeId) { const el = document.getElementById(activeId); if (el && el.focus) { el.focus(); try { el.setSelectionRange(selS, selE); } catch (e) {} } }

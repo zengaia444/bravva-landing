@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&family=Parisienne&display=swap" rel="stylesheet">
 <style>body{margin:0;background:#2A0B22}a{color:#F6EEE2}a:hover{color:#FFFFFF}button{font-family:inherit}*{-webkit-tap-highlight-color:transparent}.phone{display:flex;justify-content:center;padding:24px 0}@media (max-width:430px){.phone{padding:0}.phone>div{width:100vw!important;height:100dvh!important;min-height:844px}}</style>
+<script src="theme.js"></script>
 </head>
 <body>
 <div class="phone" id="dc-root"></div>
@@ -50,10 +51,7 @@
 
 <sc-if value="{{ notLanded }}" hint-placeholder-val="{{ true }}">
 <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px">
-<button type="button" onClick="{{ land }}" style="border: 0; cursor: pointer; width: 200px; height: 200px; border-radius: 50%; background: {{accent}}; color: #F6EEE2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 0 14px #561E4A">
-<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#F6EEE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 22px">I've landed safe</span>
-</button>
+<button type="button" onClick="{{ land }}" style="align-self: center; border: 0; cursor: pointer; height: 52px; padding: 0 24px 0 18px; border-radius: 999px; background: {{accent}}; color: #F6EEE2; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px; white-space: nowrap"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0"><path d="M7.5 11V5A1.25 1.25 0 0 1 10 5V10V3.8A1.25 1.25 0 0 1 12.5 3.8V10V5A1.25 1.25 0 0 1 15 5V11C15.7 10 16.7 9.4 18 9.4C17.9 11.7 17.4 13.7 16.4 15.5C15.3 18.8 13.8 20.5 12 20.5C10.2 20.5 8.7 18.8 7.6 15.5C6.6 13.7 6.1 11.7 6 9.4C7.3 9.4 6.8 10 7.5 11Z" fill="#22357F" stroke="#8FB8EA" stroke-width="1" stroke-linejoin="round"/><path d="M9 15.2c.9-1.2 1.9-1.8 3-1.8s2.1.6 3 1.8c-.9 1.2-1.9 1.8-3 1.8s-2.1-.6-3-1.8z" fill="none" stroke="#8FB8EA" stroke-width="1"/><circle cx="12" cy="15.2" r=".9" fill="#8FB8EA"/></svg>I have arrived safely</button>
 <div style="font-size: 13px; line-height: 1.5; color: #E3CDD3; text-align: center; max-width: 290px; margin-top: 10px">No tap within 3 hours of arrival? Minrie gets a gentle nudge.</div>
 </div>
 </sc-if>
@@ -99,7 +97,7 @@ return {
 accent,
 highlight: this.props.highlight ?? '#F0C9D3',
 sharedAria: s.shared ? 'true' : 'false',
-switchBg: s.shared ? '#F0C9D3' : '#7A3A6C',
+switchBg: s.shared ? '#34C759' : '#7A3A6C',
 knobSide: s.shared ? 'flex-end' : 'flex-start',
 toggleShare: () => this.setState({ shared: !s.shared }),
 notLanded: !s.landed,
