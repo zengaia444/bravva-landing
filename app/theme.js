@@ -31,8 +31,10 @@
     if (!el.hasAttribute('data-th')) {
       var st = el.getAttribute('style');
       var own = isStrong(bgOf(st));
-      if (st) el.setAttribute('style', fixStyle(st, strong));
+      if (st) el.setAttribute('style', fixStyle(st, strong || own));
       if (!strong) ['fill', 'stroke'].forEach(function (a) { var v = el.getAttribute(a); if (v) el.setAttribute(a, swap(v, ALL)); });
+      // Berry or plum block with no text color of its own: keep its text cream.
+      if (own && !strong && !/(^|;)\s*color\s*:/i.test(st || '') && /#(B0246E|8E1C59|C93A85|3B1030)\b/i.test(bgOf(st))) el.style.color = '#F6EEE2';
       el.setAttribute('data-th', '1');
       strong = strong || own;
     } else {

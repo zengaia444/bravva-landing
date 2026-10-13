@@ -17,7 +17,7 @@
 <div style="flex-grow: 1; box-sizing: border-box; padding: 56px 24px 16px; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
 
 <div style="display: flex; flex-direction: column; gap: 10px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Vetted places · Lisbon</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">Vetted places · Makati</div>
 <h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 32px; line-height: 1.06; letter-spacing: -0.02em">Where BRAVVA women <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">feel at home.</span></h1>
 <a href="add-place.html" style="align-self: flex-start; text-decoration: none; display: flex; align-items: center; gap: 8px; border: 2px solid #F0C9D3; color: #F0C9D3; font-weight: 700; font-size: 15px; height: 44px; padding: 0 18px; border-radius: 999px"><span aria-hidden="true" style="font-size: 20px; line-height: 1">+</span> Add a place</a>
 <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #E3CDD3"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #E5B544"></span>Gold = BRAVVA Verified partners with exclusive perks. Everything else is vetted by members.</div>
@@ -86,14 +86,14 @@ const accent = this.props.accent ?? '#B0246E';
 const highlight = this.props.highlight ?? '#F0C9D3';
 const s = this.state;
 const all = [
-{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Alfama', verified: true, perk: '[10% off your stay]', tags: ['Women-run', 'CCTV', '24/7 Security Guard'] },
-{ type: 'service', name: '[Co-work name]', meta: 'Service · Co-working, Cais do Sodré', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Charging outlets', 'CCTV'] },
-{ type: 'cafe', name: '[Rooftop café name]', meta: 'Café · Graça', vets: 14, tags: ['Sunset views', 'Solo-friendly'] },
-{ type: 'exp', name: '[Sunset sail]', meta: 'Experience · Belém', vets: 11, tags: ['Small group', 'Women guides'] },
-{ type: 'cafe', name: '[Café name]', meta: 'Café · Príncipe Real', vets: 9, tags: ['Fast wifi', 'Open late'] },
-{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Bairro Alto', vets: 6, tags: ['Female dorms', '24/7 Security Guard'] },
-{ type: 'service', name: '[Women-run nail studio]', meta: 'Service · Chiado', vets: 8, tags: ['Women-run', 'CCTV'] },
-{ type: 'service', name: '[Laundry pick-up]', meta: 'Service · Arroios', vets: 5, tags: ['Solo-friendly', 'Open late'] }
+{ type: 'stay', name: '[Guesthouse name]', meta: 'Stay · Salcedo Village', verified: true, perk: '[10% off your stay]', tags: ['Women-run', 'CCTV', '24/7 Security Guard'] },
+{ type: 'service', name: '[Co-work name]', meta: 'Service · Co-working, Legazpi Village', verified: true, perk: '[Free day pass, first visit]', tags: ['Day pass', 'Charging outlets', 'CCTV'] },
+{ type: 'cafe', name: '[Rooftop café name]', meta: 'Café · Poblacion', vets: 14, tags: ['Sunset views', 'Solo-friendly'] },
+{ type: 'exp', name: '[Sunset walk]', meta: 'Experience · Ayala Triangle', vets: 11, tags: ['Small group', 'Women guides'] },
+{ type: 'cafe', name: '[Café name]', meta: 'Café · Rockwell', vets: 9, tags: ['Fast wifi', 'Open late'] },
+{ type: 'stay', name: '[Hostel name]', meta: 'Stay · Poblacion', vets: 6, tags: ['Female dorms', '24/7 Security Guard'] },
+{ type: 'service', name: '[Women-run nail studio]', meta: 'Service · Greenbelt', vets: 8, tags: ['Women-run', 'CCTV'] },
+{ type: 'service', name: '[Laundry pick-up]', meta: 'Service · San Antonio', vets: 5, tags: ['Solo-friendly', 'Open late'] }
 ];
 const fl = [['all','All'],['stay','Stays'],['cafe','Cafés'],['exp','Experiences'],['service','Services']];
 const filters = fl.map(([id, label]) => ({ label, pressed: s.filter === id ? 'true' : 'false', bg: s.filter === id ? accent : '#561E4A', fg: '#F6EEE2', pick: () => this.setState({ filter: id }) }));
