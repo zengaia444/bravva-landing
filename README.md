@@ -1,25 +1,8 @@
-# BRAVVA landing page + app prototype
+# bravvaclub.com
 
-Travel solo. Never alone. Static site for BRAVVA Club Empire, separate from the Sparkle Hub codebase.
+Public website for BRAVVA Club. Static site served by GitHub Pages.
 
-- `index.html` — landing page (waitlist)
-- `app/` — clickable app prototype, starts at `app/welcome-1.html`
-  - Welcome 1–4, Home, Plan timer, Trips (Landed safe), Nearby, Places
-  - `dc-lite.js` powers the interactive screens (no build step, no dependencies)
-
-## Brand
-Plum `#3B1030` · Cream `#F6EEE2` · Sand `#E6D8C5` · Berry `#B0246E` · Blush `#F0C9D3`
-Fonts: Fraunces (headings) + DM Sans (body), from Google Fonts.
-
-## To do
-- Replace the photo placeholders (boxes captioned "Photo: …") with real images in an `images/` folder.
-- Connect the waitlist form to Systeme.io.
-- Fill [YOUR PRICE] and the place names in `app/places.html`.
-
-## Publish free with GitHub Pages
-Settings → Pages → Source: "Deploy from a branch" → Branch: `main`, folder `/ (root)` → Save.
-Live in about a minute at `https://<your-username>.github.io/bravva-landing/`.
-
-## Membership (decided 13 Oct 2026)
-- First 10,000 Founding Members: $49 one-time, lifetime, paid via Systeme.io + PayPal. Full refund on request until Jan 15, 2027.
-- App launches Dec 15, 2026. After 10,000: invite-only (any verified member can invite; paid referrals earn Sparkles), $7.99/month or $59/year via Stripe (recurring billing and cancellations). Refund within 30 days of payment.
+- index.html: home and Founding checkout
+- thanks.html, terms.html, privacy.html, refund.html
+- config.js: checkout link and contact email
+- images/: photos used on the site
