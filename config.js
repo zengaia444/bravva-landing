@@ -1,10 +1,14 @@
 // BRAVVA settings. Change a value here, save, then Commit + Push in GitHub Desktop.
-// PAYPAL: paste your PayPal payment link (or button link) between the quotes.
+// PAYPAL LINK: fallback checkout page (used if the embedded button can't load).
 window.BRAVVA_PAYPAL = "https://www.paypal.com/ncp/payment/G8E4ATWLSL334";
+// PAYPAL EMBED: paste the client-id from PayPal's embed code here to show checkout right on the page.
+// (PayPal > Pay Links & Buttons > your button > Embed code. The client-id is the long code after "client-id=".)
+window.BRAVVA_PAYPAL_CLIENT_ID = "BAA5mS_Z7OouCBKw55DDjF4LXp_pw5jmGegdFBT2W3jwctpPUfwRrLDGJXvN9S3N_TX44TIrQSYFuYRU1U";
+window.BRAVVA_PAYPAL_BUTTON_ID = "G8E4ATWLSL334";
 // Where buyers can reach you (used on Terms, Privacy, Refund and Thank-you pages).
 window.BRAVVA_CONTACT = "hello@bravvaclub.com";
-// Every Join / Claim button goes to PayPal once BRAVVA_PAYPAL is set. Until then they scroll to Pricing.
+// Join / Claim buttons: scroll to the on-page checkout when the embed is set up, otherwise open the PayPal link.
 window.BRAVVA_LINKS = {
-  join: window.BRAVVA_PAYPAL || "#pricing",
-  founding: window.BRAVVA_PAYPAL || "#pricing"
+  join: window.BRAVVA_PAYPAL_CLIENT_ID ? "#checkout" : (window.BRAVVA_PAYPAL || "#pricing"),
+  founding: window.BRAVVA_PAYPAL_CLIENT_ID ? "#checkout" : (window.BRAVVA_PAYPAL || "#pricing")
 };
