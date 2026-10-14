@@ -55,7 +55,8 @@ ol,ul{padding-left:22px}li{margin:6px 0}
 <p class="muted">Tell her before the Founding spots are gone.</p>
 <div style="display:flex;flex-wrap:wrap;gap:10px">
 <a class="btn" href="https://wa.me/?text=Join%20me%21%20I%20just%20claimed%20my%20Founding%20spot%20in%20BRAVVA%2C%20the%20private%20club%20for%20women%20who%20travel%20solo.%20Spots%20are%20limited%3A%20%E2%9C%A8https%3A//www.bravvaclub.com" target="_blank" rel="noopener">Share on WhatsApp</a>
-<a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.bravvaclub.com" target="_blank" rel="noopener">Share on Facebook</a>
+<a class="btn" href="https://www.threads.net/intent/post?text=Join%20me%21%20I%20just%20claimed%20my%20Founding%20spot%20in%20BRAVVA%2C%20the%20private%20club%20for%20women%20who%20travel%20solo.%20Spots%20are%20limited%3A%20%E2%9C%A8https%3A//www.bravvaclub.com" target="_blank" rel="noopener">Share on Threads</a>
+<button class="btn" type="button" id="ig-share">Send on Instagram</button>
 <button class="btn ghost" type="button" id="copy">Copy link</button>
 </div>
 <p class="muted" style="font-size:14px;margin-top:32px">Not satisfied? Full refund until January 15, 2027. See our <a href="/refund.html">Refund Policy</a>.</p>
@@ -64,5 +65,11 @@ ol,ul{padding-left:22px}li{margin:6px 0}
 <script src="/config.js"></script>
 <script>(function(){var c=(window.BRAVVA_CONTACT||"hello@bravvaclub.com");document.querySelectorAll("[data-contact]").forEach(function(a){a.textContent=a.getAttribute("data-label")||c;a.href="mailto:"+c+(a.getAttribute("data-subject")?"?subject="+encodeURIComponent(a.getAttribute("data-subject")):"");});})();</script>
 <script>document.getElementById("copy").addEventListener("click",function(){var b=this;var t="https://www.bravvaclub.com";(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent="Link copied"},function(){prompt("Copy this link:",t)});});</script>
+<script>(function(){var b=document.getElementById("ig-share");if(!b)return;var msg="Join me! I just claimed my Founding spot in BRAVVA, the private club for women who travel solo. Spots are limited: \u2728https://www.bravvaclub.com";
+b.addEventListener("click",function(){
+if(navigator.share){navigator.share({text:msg}).catch(function(){});return;}
+var go=function(){b.textContent="Message copied. Paste it in your DM";window.open("https://www.instagram.com/direct/inbox/","_blank","noopener");};
+(navigator.clipboard?navigator.clipboard.writeText(msg):Promise.reject()).then(go,function(){prompt("Copy this message, then paste it in an Instagram DM:",msg);});
+});})();</script>
 </body>
 </html>
