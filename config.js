@@ -9,6 +9,6 @@ window.BRAVVA_PAYPAL_BUTTON_ID = "G8E4ATWLSL334";
 window.BRAVVA_CONTACT = "hello@bravvaclub.com";
 // Join / Claim buttons: scroll to the on-page checkout when the embed is set up, otherwise open the PayPal link.
 window.BRAVVA_LINKS = {
-  join: window.BRAVVA_PAYPAL_CLIENT_ID ? "#checkout" : (window.BRAVVA_PAYPAL || "#pricing"),
-  founding: window.BRAVVA_PAYPAL_CLIENT_ID ? "#checkout" : (window.BRAVVA_PAYPAL || "#pricing")
+  join: window.BRAVVA_PAYPAL_CLIENT_ID ? "#pricing" : (window.BRAVVA_PAYPAL || "#pricing"),
+  founding: window.BRAVVA_PAYPAL || "#pricing"
 };
