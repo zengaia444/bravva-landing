@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Add to my circle · BRAVVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;700&family=Parisienne&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#2A0B22}a{color:#F6EEE2}a:hover{color:#FFFFFF}button{font-family:inherit}input,textarea{font-family:inherit}input::placeholder{color:#B57AA6}*{-webkit-tap-highlight-color:transparent}.phone{display:flex;justify-content:center;padding:24px 0}@media (max-width:430px){.phone{padding:0}.phone>div{width:100vw!important;height:100dvh!important;min-height:844px}}</style>
+<script src="theme.js"></script>
+</head>
+<body>
+<div class="phone" id="dc-root"></div>
+<template id="dc-template">
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #3B1030; color: #F6EEE2; font-family: 'DM Sans', system-ui, sans-serif; display: flex; flex-direction: column; position: relative; overflow: hidden">
+<div style="flex-grow: 1; box-sizing: border-box; padding: 52px 24px 16px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="circle.html" aria-label="Back to my circle" style="text-decoration: none; width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F6EEE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F0C9D3">My circle</div>
+<div style="width: 44px"></div>
+</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 28px; line-height: 1.1">Add someone <span style="font-family: 'Parisienne', cursive; font-weight: 400; font-size: 1.2em; color: #F0C9D3">you trust.</span></h1>
+<div style="display: flex; align-items: center; gap: 12px; background: #4A1640; border-radius: 18px; padding: 12px 14px">
+<div style="display: flex; gap: 6px" aria-hidden="true">
+<sc-for list="{{ slots }}" as="d" hint-placeholder-count="5"><span style="width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; background: {{ d.bg }}; border: 2px solid {{ d.bd }}; display: block"></span></sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 1px"><div style="font-size: 15px; font-weight: 700">{{ usedLabel }}</div><div style="font-size: 12px; color: #E3CDD3">{{ leftLabel }}</div></div>
+</div>
+<sc-if value="{{ hasRoom }}" hint-placeholder-val="{{ true }}">
+<div role="tablist" aria-label="How to add" style="display: flex; background: #4A1640; border-radius: 999px; padding: 4px; gap: 4px">
+<button type="button" role="tab" aria-selected="{{ tabA.aria }}" onClick="{{ tabA.go }}" style="flex: 1 1 0; border: 0; cursor: pointer; height: 40px; border-radius: 999px; background: {{ tabA.bg }}; color: #F6EEE2; font-weight: 700; font-size: 14px">Find a member</button>
+<button type="button" role="tab" aria-selected="{{ tabB.aria }}" onClick="{{ tabB.go }}" style="flex: 1 1 0; border: 0; cursor: pointer; height: 40px; border-radius: 999px; background: {{ tabB.bg }}; color: #F6EEE2; font-weight: 700; font-size: 14px">Invite a friend</button>
+</div>
+<sc-if value="{{ onFind }}" hint-placeholder-val="{{ true }}">
+<label style="display: flex; align-items: center; gap: 10px; height: 50px; border-radius: 16px; background: #561E4A; padding: 0 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+<input type="search" value="Ari" aria-label="Search verified members by name or @username" placeholder="Name or @username" style="border: 0; outline: 0; background: transparent; color: #F6EEE2; font-size: 16px; flex-grow: 1; min-width: 0"/>
+</label>
+<div style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #F0C9D3">Verified members</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{ results }}" as="r" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 12px; background: #561E4A; border-radius: 18px; padding: 10px 12px 10px 14px">
+<span style="position: relative; flex-shrink: 0; display: block"><span style="width: 44px; height: 44px; border-radius: 50%; background: {{ r.color }}; color: #3B1030; font-weight: 700; font-size: 17px; display: flex; align-items: center; justify-content: center">{{ r.initial }}</span><span style="position: absolute; right: -3px; bottom: -3px"><svg viewBox="0 0 24 24" width="18" height="18" aria-label="Verified member" role="img" style="display: block; flex-shrink: 0"><circle cx="12" cy="12" r="11" fill="#1D9BF0" stroke="#561E4A" stroke-width="2"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0"><span style="font-size: 15px; font-weight: 700">{{ r.name }}</span><span style="font-size: 13px; color: #E3CDD3">{{ r.meta }}</span></span>
+<button type="button" onClick="{{ r.add }}" style="border: 0; cursor: pointer; height: 36px; padding: 0 14px; border-radius: 999px; background: {{ r.bg }}; color: #F6EEE2; font-weight: 700; font-size: 13px; white-space: nowrap">{{ r.label }}</button>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 13px; line-height: 1.45; color: #E3CDD3">She gets a request and joins your circle when she accepts.</div>
+</sc-if>
+<sc-if value="{{ onInvite }}" hint-placeholder-val="{{ false }}">
+<div style="font-size: 14px; line-height: 1.5; color: #E3CDD3">Not on BRAVVA yet? Send her a private invite. She joins your circle once she's verified.</div>
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700">Her email or mobile number</span>
+<input type="text" value="{{ inviteTo }}" aria-label="Her email or mobile number" placeholder="name@email.com or +63 9xx xxx xxxx" style="height: 50px; box-sizing: border-box; border: 2px solid #6A2A5C; border-radius: 16px; background: #561E4A; color: #F6EEE2; font-size: 16px; padding: 0 14px; outline: 0"/></label>
+<button type="button" onClick="{{ sendInvite }}" style="border: 0; cursor: pointer; height: 52px; flex-shrink: 0; border-radius: 999px; background: #B0246E; color: #F6EEE2; font-weight: 700; font-size: 16px">{{ inviteLabel }}</button>
+<div style="background: #4A1640; border-radius: 18px; padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start">
+<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0"><path d="M15 3C15.8 9 17 10.6 22 12C17 13.4 15.8 15 15 21C14.2 15 13 13.4 8 12C13 10.6 14.2 9 15 3Z" fill="#FFD21F"/><path d="M6 2C6.4 4.3 6.8 4.7 9 5C6.8 5.3 6.4 5.7 6 8C5.6 5.7 5.2 5.3 3 5C5.2 4.7 5.6 4.3 6 2Z" fill="#FFEB7A"/><path d="M7 15C7.4 17.3 7.8 17.7 10 18C7.8 18.3 7.4 18.7 7 21C6.6 18.7 6.2 18.3 4 18C6.2 17.7 6.6 17.3 7 15Z" fill="#FFEB7A"/></svg>
+<div style="font-size: 13px; line-height: 1.45; color: #E3CDD3"><strong style="color: #F6EEE2">Invites hold a spot.</strong> If she joins BRAVVA, you both earn +200 Sparkles. Unused invites expire after 14 days.</div>
+</div>
+</sc-if>
+</sc-if>
+<sc-if value="{{ isFull }}" hint-placeholder-val="{{ false }}">
+<div style="background: #561E4A; border-radius: 22px; padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; text-align: center; align-items: center">
+<div style="font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 22px">Your circle is full.</div>
+<div style="font-size: 14px; line-height: 1.5; color: #E3CDD3">Every BRAVVA woman can have up to 5 people in her circle. Remove someone to make room.</div>
+<a href="circle.html" style="text-decoration: none; height: 48px; padding: 0 22px; border-radius: 999px; border: 2px solid #F0C9D3; color: #F0C9D3; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; box-sizing: border-box">Manage my circle</a>
+</div>
+</sc-if>
+</div>
+<nav aria-label="Main" style="height: 84px; flex-shrink: 0; box-sizing: border-box; background: #4A1640; border-top: 1px solid #6A2A5C; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px">
+<a href="home.html" aria-current="page" style="text-decoration: none; color: #F0C9D3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F0C9D3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z"/></svg>Home</a>
+<a href="nearby.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.2c.6-.2 1.3-.3 2-.3 2.2 0 4 1.8 4 4"/></svg>Nearby</a>
+<a href="places.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>Places</a>
+<a href="trips.html" style="text-decoration: none; color: #E3CDD3; min-width: 64px; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3CDD3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 3L3 10.5l7 2.5 2.5 7z"/><path d="M10 13L21 3"/></svg>Trips</a>
+</nav>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { tab: 'find', added: {}, invited: false }; }
+renderVals() {
+const s = this.state;
+const slotsFor = (used, pending) => [0,1,2,3,4].map((i) => i < used ? { bg: '#B0246E', bd: '#B0246E' } : i < used + pending ? { bg: 'transparent', bd: '#B0246E' } : { bg: 'transparent', bd: '#7A3A6C' });
+const base = 4;
+const extra = Object.keys(s.added).length + (s.invited ? 1 : 0);
+const used = Math.min(5, base + extra);
+const full = used >= 5;
+const tab = (k) => ({ aria: s.tab === k ? 'true' : 'false', bg: s.tab === k ? '#B0246E' : 'transparent', go: () => this.setState({ tab: k }) });
+const results = [
+{ name: 'Ariana', meta: '@ariana.travels · Cebu', color: '#F0C9D3' },
+{ name: 'Arisa', meta: '@arisa · Tokyo', color: '#E6D8C5' }
+].map((r) => { const done = !!s.added[r.name]; return Object.assign({ initial: r.name.charAt(0), label: done ? 'Requested' : 'Add', bg: done ? '#7A3A6C' : '#B0246E', off: done ? 'disabled' : null, add: () => { if (!done && !full) this.setState({ added: Object.assign({}, s.added, { [r.name]: true }) }); } }, r); });
+return {
+slots: slotsFor(3, 1 + extra),
+usedLabel: used + ' of 5 spots used',
+leftLabel: full ? 'Circle full' : (5 - used) + (5 - used === 1 ? ' spot left' : ' spots left'),
+hasRoom: !full || s.invited || Object.keys(s.added).length > 0, isFull: full && !s.invited && Object.keys(s.added).length === 0,
+tabA: tab('find'), tabB: tab('invite'), onFind: s.tab === 'find', onInvite: s.tab === 'invite',
+results,
+inviteTo: s.invited ? 'sam@email.com' : '',
+inviteLabel: s.invited ? 'Invite sent · pending' : 'Send private invite',
+sendInvite: () => { if (!full) this.setState({ invited: true }); }
+};
+}
+}
+dcMount(Component);
+</script>
+</body>
+</html>

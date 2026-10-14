@@ -1,7 +1,10 @@
-// BRAVVA links. Change a URL here, save, then Commit + Push in GitHub Desktop.
+// BRAVVA settings. Change a value here, save, then Commit + Push in GitHub Desktop.
+// PAYPAL: paste your PayPal payment link (or button link) between the quotes.
+window.BRAVVA_PAYPAL = "";
+// Where buyers can reach you (used on Terms, Privacy, Refund and Thank-you pages).
+window.BRAVVA_CONTACT = "hello@bravvaclub.com";
+// Every Join / Claim button goes to PayPal once BRAVVA_PAYPAL is set. Until then they scroll to Pricing.
 window.BRAVVA_LINKS = {
-  join: "https://join.bravvaclub.com",      // every "Join Now" button
-  founding: "https://join.bravvaclub.com",  // Founding Member card ($49/year). Swap for the exact Systeme.io order page if it differs
-  free: "https://join.bravvaclub.com",     // Free Member card. Swap for its own Systeme.io signup page
-  trial: "https://join.bravvaclub.com"      // Monthly card (free 30 days). Swap for its own Systeme.io order page
+  join: window.BRAVVA_PAYPAL || "#pricing",
+  founding: window.BRAVVA_PAYPAL || "#pricing"
 };
