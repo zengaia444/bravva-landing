@@ -46,6 +46,12 @@ ol,ul{padding-left:22px}li{margin:6px 0}
 <li>Watch your inbox for your welcome email and Founding number from BRAVVA.</li>
 <li>On <strong>December 15, 2026</strong>, download BRAVVA from the Apple App Store and sign up with the same email.</li>
 </ol>
+<div class="card" id="discord-card" style="display:none;background:#3B1030;border-color:#3B1030;color:#F6EEE2">
+<div style="display:flex;align-items:center;gap:12px"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0"><path fill="#F0C9D3" d="M19.3 5.3A16 16 0 0 0 15.4 4l-.5 1a14.8 14.8 0 0 0-5.8 0L8.6 4a16 16 0 0 0-3.9 1.3C2.2 9 1.5 12.7 1.9 16.3a16 16 0 0 0 4.8 2.4l1-1.6c-.6-.2-1.1-.5-1.6-.8l.4-.3a11.4 11.4 0 0 0 9.9 0l.4.3c-.5.3-1 .6-1.6.8l1 1.6a16 16 0 0 0 4.8-2.4c.5-4.2-.8-7.9-1.7-11zM8.7 14.1c-.9 0-1.7-.9-1.7-1.9s.8-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9zm6.6 0c-.9 0-1.7-.9-1.7-1.9s.8-1.9 1.7-1.9 1.7.9 1.7 1.9-.7 1.9-1.7 1.9z"/></svg>
+<h2 style="margin:0;color:#F6EEE2">Join the Founders' Discord</h2></div>
+<p style="color:#E3CDD3;margin:12px 0 16px">Meet other Founding Members before launch, get early updates, and help shape BRAVVA. Women only, moderated by the BRAVVA team.</p>
+<a class="btn" id="discord-link" href="#" target="_blank" rel="noopener">Join the BRAVVA Discord</a>
+</div>
 <div class="card">
 <strong>Want to use a different email for the app?</strong>
 <div class="muted" style="font-size:15px;margin:4px 0 14px">Tell us so your Founding number is linked to the right account. Include your PayPal transaction ID.</div>
@@ -71,5 +77,6 @@ if(navigator.share){navigator.share({text:msg}).catch(function(){});return;}
 var go=function(){b.textContent="Message copied. Paste it in your DM";window.open("https://www.instagram.com/direct/inbox/","_blank","noopener");};
 (navigator.clipboard?navigator.clipboard.writeText(msg):Promise.reject()).then(go,function(){prompt("Copy this message, then paste it in an Instagram DM:",msg);});
 });})();</script>
+<script>(function(){var u=window.BRAVVA_DISCORD;if(!u)return;var c=document.getElementById("discord-card"),l=document.getElementById("discord-link");if(c&&l){l.href=u;c.style.display="block";}})();</script>
 </body>
 </html>
