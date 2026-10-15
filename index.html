@@ -836,6 +836,10 @@ document.head.appendChild(sc);})();
     if(!loaded){var s=document.createElement('script');s.src=src;s.async=true;document.getElementById('bv-news-form').appendChild(s);loaded=true;}
     box.classList.add('on'); document.getElementById('bv-news-x').focus();
   }
+  // leave room under the Systeme form so its "Powered by" badge sits below the button
+  var holder=document.getElementById('bv-news-form');
+  function pad(){var fr=holder.querySelector('iframe');if(!fr)return;var h=parseInt(fr.getAttribute('height'),10);if(h>0)fr.style.height=(h+50)+'px';}
+  new MutationObserver(function(){var fr=holder.querySelector('iframe');if(fr&&!fr.dataset.bvObs){fr.dataset.bvObs='1';new MutationObserver(pad).observe(fr,{attributes:true,attributeFilter:['height']});}pad();}).observe(holder,{childList:true,subtree:true});
   function close(){box.classList.remove('on'); set('bvNewsClosed',String(Date.now()));}
   document.getElementById('bv-news-x').addEventListener('click',close);
   box.addEventListener('click',function(e){if(e.target===box)close();});
