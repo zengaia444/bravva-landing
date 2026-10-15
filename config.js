@@ -14,3 +14,7 @@ window.BRAVVA_LINKS = {
   join: window.BRAVVA_PAYPAL_CLIENT_ID ? "#pricing" : (window.BRAVVA_PAYPAL || "#pricing"),
   founding: window.BRAVVA_PAYPAL || "#pricing"
 };
+
+// NEWSLETTER POPUP: paste the script URL from your Systeme.io form embed code here (the src="..." part).
+// The popup stays off while this is empty.
+window.BRAVVA_NEWSLETTER_SCRIPT = "https://bravva-club.systeme.io/public/remote/page/457634451fbb052f690113fedeae3acb89dd9163.js";
